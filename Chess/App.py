@@ -4,7 +4,6 @@ from Board import Board
 app = Flask(__name__)
 board = Board()
 
-# chr fonksiyonunu jinja2'ye tanıtmak için bir filtre ekliyoruz
 app.jinja_env.filters['chr'] = lambda value: chr(value)
 
 
@@ -17,7 +16,7 @@ def index():
         to_row, to_col = 8 - int(to_pos[1]), ord(to_pos[0]) - ord('a')
         board.move_piece(from_row, from_col, to_row, to_col)
 
-        # AI hareketi
+        
         board.make_random_move('black')
 
         return redirect(url_for('index'))
