@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chess Game</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 24px;
+        }
+        .black {
+            background-color: gray;
+        }
+        .white {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chess Game</h1>
+    <table>
+        <tr>
+            <th></th>
+            {% for col in range(8) %}
+                <th>{{ (97 + col)|chr }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in range(8) %}
+            <tr>
+                <th>{{ 8 - row }}</th>
+                {% for col in range(8) %}
+                    <td class="{{ 'black' if (row + col) % 2 == 0 else 'white' }}">
+                        {% if board[row][col] is not none %}
+                            {{ board[row][col].color[0] }}{{ board[row][col].__class__.__name__[0] }}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <form method="post">
+        From: <input type="text" name="from">
+        To: <input type="text" name="to">
+        <input type="submit" value="Move">
+    </form>
+ <footer>
+        <p>Ceren Türkmen</p>
+    </footer>
+</body>
+</html>
